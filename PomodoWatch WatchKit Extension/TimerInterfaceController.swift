@@ -10,9 +10,12 @@ import Foundation
 
 
 class TimerInterfaceController: WKInterfaceController {
+    @IBOutlet var sessionName: WKInterfaceLabel!
     @IBOutlet var myTimer: WKInterfaceTimer!
+    
     override func awake(withContext context: Any?) {
-        // Configure interface objects here.
+        super.awake(withContext: context)
+        sessionName.setText(context as? String)
     }
     
     override func willActivate() {

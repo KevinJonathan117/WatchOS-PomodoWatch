@@ -6,16 +6,20 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="18022"/>
     </dependencies>
     <scenes>
-        <!--Interface Controller-->
+        <!--newSession-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="PomodoWatch_WatchKit_App" customModuleProvider="target">
+                <controller identifier="newSession" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="PomodoWatch_WatchKit_App" customModuleProvider="target">
                     <items>
                         <group width="1" alignment="center" verticalAlignment="center" layout="vertical" id="0Yf-3X-w3s">
                             <items>
                                 <label width="136" alignment="center" text="New Session" textAlignment="center" id="O5U-vD-DTT"/>
-                                <textField width="1" alignment="center" placeholder="Enter.." id="ONn-wB-bL7"/>
-                                <button width="1" alignment="center" title="Done" id="q74-mr-jKY">
+                                <textField width="1" alignment="center" placeholder="Enter.." id="ONn-wB-bL7">
+                                    <connections>
+                                        <action selector="sessionInput:" destination="AgC-eL-Hgc" id="IRk-dy-aiJ"/>
+                                    </connections>
+                                </textField>
+                                <button width="1" alignment="center" title="Start" id="q74-mr-jKY">
                                     <connections>
                                         <action selector="doneButton" destination="AgC-eL-Hgc" id="Vg7-FT-kcV"/>
                                     </connections>
@@ -23,23 +27,29 @@
                             </items>
                         </group>
                     </items>
-                    <connections>
-                        <outlet property="sessionName" destination="ONn-wB-bL7" id="wet-A4-jZY"/>
-                        <segue destination="HsP-2o-DJr" kind="relationship" relationship="nextPage" id="ose-UB-3sK"/>
-                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="-16" y="-20"/>
         </scene>
-        <!--Timer Interface Controller-->
+        <!--timerPomodoro-->
         <scene sceneID="eBO-ro-Yg6">
             <objects>
-                <controller id="HsP-2o-DJr" customClass="TimerInterfaceController" customModule="PomodoWatch_WatchKit_Extension">
+                <controller identifier="timerPomodoro" id="HsP-2o-DJr" customClass="TimerInterfaceController" customModule="PomodoWatch_WatchKit_Extension">
                     <items>
-                        <timer alignment="left" id="sEI-3M-1tD"/>
+                        <group width="1" alignment="center" verticalAlignment="center" layout="vertical" id="2Yc-9k-Dhl">
+                            <items>
+                                <label alignment="center" text="Session Name" textAlignment="center" numberOfLines="0" id="Pah-GW-UmD"/>
+                                <timer alignment="center" previewedSeconds="1500" id="sEI-3M-1tD">
+                                    <fontDescription key="font" style="UICTFontTextStyleTitle0"/>
+                                    <calendarUnit key="units" minute="YES" second="YES"/>
+                                </timer>
+                                <button width="1" alignment="center" title="Done" id="skJ-kW-8P0"/>
+                            </items>
+                        </group>
                     </items>
                     <connections>
                         <outlet property="myTimer" destination="sEI-3M-1tD" id="BgG-bT-b3O"/>
+                        <outlet property="sessionName" destination="Pah-GW-UmD" id="2Ic-4A-0JP"/>
                     </connections>
                 </controller>
             </objects>
