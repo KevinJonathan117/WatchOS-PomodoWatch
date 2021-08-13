@@ -14,7 +14,7 @@ class TimerInterfaceController: WKInterfaceController {
     @IBOutlet var myTimer: WKInterfaceTimer!
     var isBreak: Bool = false
     var timer = Timer()
-    var backgroundTimer = 15
+    var backgroundTimer = 1500
     var session = ""
     var breakName = "Break"
     
@@ -35,11 +35,11 @@ class TimerInterfaceController: WKInterfaceController {
     func restartTimer() {
         if(!isBreak) {
             sessionName.setText(session)
-            backgroundTimer = 15
+            backgroundTimer = 1500
             myTimer.setDate(Date() + TimeInterval(backgroundTimer))
         } else {
             sessionName.setText(breakName)
-            backgroundTimer = 3
+            backgroundTimer = 300
             myTimer.setDate(Date() + TimeInterval(backgroundTimer))
         }
         myTimer.start()
