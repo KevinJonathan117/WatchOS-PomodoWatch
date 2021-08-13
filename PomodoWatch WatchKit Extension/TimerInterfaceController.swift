@@ -12,18 +12,53 @@ import Foundation
 class TimerInterfaceController: WKInterfaceController {
     @IBOutlet var sessionName: WKInterfaceLabel!
     @IBOutlet var myTimer: WKInterfaceTimer!
+    var isBreak: Bool = false
+    var timer = Timer()
+    var backgroundTimer = 15
+    var session = ""
+    var breakName = "Break"
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        sessionName.setText(context as? String)
+        session = (context as? String)!
+        sessionName.setText(session)
     }
     
     override func willActivate() {
-        myTimer.setDate(Date())
+        if(!isBreak) {
+            myTimer.setDate(Date() + TimeInterval(backgroundTimer))
+        }
         myTimer.start()
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerCountDown), userInfo: nil, repeats: true)
+    }
+    
+    func restartTimer() {
+        if(!isBreak) {
+            sessionName.setText(session)
+            backgroundTimer = 15
+            myTimer.setDate(Date() + TimeInterval(backgroundTimer))
+        } else {
+            sessionName.setText(breakName)
+            backgroundTimer = 3
+            myTimer.setDate(Date() + TimeInterval(backgroundTimer))
+        }
+        myTimer.start()
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerCountDown), userInfo: nil, repeats: true)
     }
     
     override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
+        timer.invalidate()
+        myTimer.stop()
+    }
+    
+    @objc func timerCountDown() {
+        backgroundTimer -= 1
+        if backgroundTimer == 0 {
+            timer.invalidate()
+            myTimer.stop()
+            isBreak.toggle()
+            restartTimer()
+        }
+
     }
 }
