@@ -61,4 +61,7 @@ class TimerInterfaceController: WKInterfaceController {
         }
 
     }
+    @IBAction func doneSession() {
+        popToRootController()
+    }
 }
