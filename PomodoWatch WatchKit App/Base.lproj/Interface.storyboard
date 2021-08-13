@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="18122" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="18022"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="PomodoWatch_WatchKit_App" customModuleProvider="target">
+                    <items>
+                        <group width="1" alignment="center" verticalAlignment="center" layout="vertical" id="0Yf-3X-w3s">
+                            <items>
+                                <label width="136" alignment="center" text="New Session" textAlignment="center" id="O5U-vD-DTT"/>
+                                <textField width="1" alignment="center" placeholder="Enter.." id="ONn-wB-bL7"/>
+                                <button width="1" alignment="center" title="Done" id="q74-mr-jKY">
+                                    <connections>
+                                        <action selector="doneButton" destination="AgC-eL-Hgc" id="Vg7-FT-kcV"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="sessionName" destination="ONn-wB-bL7" id="wet-A4-jZY"/>
+                        <segue destination="HsP-2o-DJr" kind="relationship" relationship="nextPage" id="ose-UB-3sK"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-16" y="-20"/>
+        </scene>
+        <!--Timer Interface Controller-->
+        <scene sceneID="eBO-ro-Yg6">
+            <objects>
+                <controller id="HsP-2o-DJr" customClass="TimerInterfaceController" customModule="PomodoWatch_WatchKit_Extension">
+                    <items>
+                        <timer alignment="left" id="sEI-3M-1tD"/>
+                    </items>
+                    <connections>
+                        <outlet property="myTimer" destination="sEI-3M-1tD" id="BgG-bT-b3O"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="220" y="-20"/>
+        </scene>
+    </scenes>
+</document>
