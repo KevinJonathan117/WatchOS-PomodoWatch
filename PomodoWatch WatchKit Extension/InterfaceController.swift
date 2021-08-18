@@ -24,7 +24,9 @@ class InterfaceController: WKInterfaceController {
         // This method is called when watch view controller is no longer visible
     }
     @IBAction func sessionInput(_ value: NSString?) {
-        sessionName = value! as String
+        if value != nil {
+            sessionName = value! as String
+        }
     }
     @IBAction func doneButton() {
         pushController(withName: "timerPomodoro", context: sessionName)
