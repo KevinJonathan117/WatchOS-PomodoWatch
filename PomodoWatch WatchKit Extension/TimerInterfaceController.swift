@@ -7,7 +7,7 @@
 
 import WatchKit
 import Foundation
-
+import AVFoundation
 
 class TimerInterfaceController: WKInterfaceController {
     @IBOutlet var sessionName: WKInterfaceLabel!
@@ -15,6 +15,7 @@ class TimerInterfaceController: WKInterfaceController {
     var isBreak: Bool = false
     var timer = Timer()
     var backgroundTimer = 1500
+    var player: AVAudioPlayer!
     var session = ""
     var breakName = "Break"
     
@@ -57,11 +58,18 @@ class TimerInterfaceController: WKInterfaceController {
             timer.invalidate()
             myTimer.stop()
             isBreak.toggle()
+            playSound()
             restartTimer()
         }
-
+        
     }
     @IBAction func doneSession() {
         popToRootController()
+    }
+    
+    func playSound() {
+        let url = Bundle.main.url(forResource: "Alert", withExtension: "wav")
+        player = try! AVAudioPlayer(contentsOf: url!)
+        player.play()
     }
 }
