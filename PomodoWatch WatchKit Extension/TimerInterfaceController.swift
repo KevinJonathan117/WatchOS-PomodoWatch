@@ -59,6 +59,7 @@ class TimerInterfaceController: WKInterfaceController {
             myTimer.stop()
             isBreak.toggle()
             playSound()
+            WKInterfaceDevice().play(.notification)
             restartTimer()
         }
         
