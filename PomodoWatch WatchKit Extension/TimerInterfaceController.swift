@@ -14,10 +14,11 @@ class TimerInterfaceController: WKInterfaceController {
     @IBOutlet var myTimer: WKInterfaceTimer!
     var isBreak: Bool = false
     var timer = Timer()
-    var backgroundTimer = 1500
+    var backgroundTimer = 15
     var player: AVAudioPlayer!
     var session = ""
     var breakName = "Break"
+    var count = 1
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
@@ -36,11 +37,11 @@ class TimerInterfaceController: WKInterfaceController {
     func restartTimer() {
         if(!isBreak) {
             sessionName.setText(session)
-            backgroundTimer = 1500
+            backgroundTimer = 15
             myTimer.setDate(Date() + TimeInterval(backgroundTimer))
         } else {
             sessionName.setText(breakName)
-            backgroundTimer = 300
+            backgroundTimer = 3
             myTimer.setDate(Date() + TimeInterval(backgroundTimer))
         }
         myTimer.start()
@@ -73,4 +74,8 @@ class TimerInterfaceController: WKInterfaceController {
         player = try! AVAudioPlayer(contentsOf: url!)
         player.play()
     }
+    @IBAction func pauseSession() {
+        
+    }
+    
 }

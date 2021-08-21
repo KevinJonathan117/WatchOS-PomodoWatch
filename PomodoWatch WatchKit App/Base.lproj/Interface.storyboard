@@ -43,11 +43,20 @@
                                     <fontDescription key="font" style="UICTFontTextStyleTitle0"/>
                                     <calendarUnit key="units" minute="YES" second="YES"/>
                                 </timer>
-                                <button width="1" alignment="center" title="Done" id="skJ-kW-8P0">
-                                    <connections>
-                                        <action selector="doneSession" destination="HsP-2o-DJr" id="oWl-3l-Ybk"/>
-                                    </connections>
-                                </button>
+                                <group width="1" alignment="left" id="NbZ-qs-xcc">
+                                    <items>
+                                        <button width="63" alignment="right" title="Done" id="skJ-kW-8P0">
+                                            <connections>
+                                                <action selector="doneSession" destination="HsP-2o-DJr" id="oWl-3l-Ybk"/>
+                                            </connections>
+                                        </button>
+                                        <button width="61" alignment="left" title="Pause" id="7t6-dh-dVI" userLabel="Pause">
+                                            <connections>
+                                                <action selector="pauseSession" destination="HsP-2o-DJr" id="sHJ-kh-vzJ"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                </group>
                             </items>
                         </group>
                     </items>
