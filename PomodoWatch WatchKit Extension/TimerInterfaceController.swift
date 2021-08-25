@@ -17,7 +17,7 @@ class TimerInterfaceController: WKInterfaceController {
     
     var isBreak: Bool = false
     var timer = Timer()
-    var backgroundTimer = 5
+    var backgroundTimer = 1500
     var player: AVAudioPlayer!
     var session = ""
     var breakName = "Break"
@@ -42,19 +42,19 @@ class TimerInterfaceController: WKInterfaceController {
         if(!isBreak) {
             count += 1
             sessionName.setText(session)
-            backgroundTimer = 5
+            backgroundTimer = 1500
             myTimer.setDate(Date() + TimeInterval(backgroundTimer))
             pauseLabel.setHidden(false)
             doneButton.setHidden(false)
         } else {
             if count != 4{
                 sessionName.setText(breakName)
-                backgroundTimer = 3
+                backgroundTimer = 300
                 myTimer.setDate(Date() + TimeInterval(backgroundTimer))
         
             }else {
                 sessionName.setText("Longer Break")
-                backgroundTimer = 10
+                backgroundTimer = 1800
                 myTimer.setDate(Date() + TimeInterval(backgroundTimer))
                 count = 0
             }
