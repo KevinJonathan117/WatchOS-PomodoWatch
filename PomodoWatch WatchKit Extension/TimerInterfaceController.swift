@@ -12,13 +12,17 @@ import AVFoundation
 class TimerInterfaceController: WKInterfaceController {
     @IBOutlet var sessionName: WKInterfaceLabel!
     @IBOutlet var myTimer: WKInterfaceTimer!
+    @IBOutlet weak var pauseLabel: WKInterfaceButton!
+    @IBOutlet weak var doneButton: WKInterfaceButton!
+    
     var isBreak: Bool = false
     var timer = Timer()
-    var backgroundTimer = 15
+    var backgroundTimer = 5
     var player: AVAudioPlayer!
     var session = ""
     var breakName = "Break"
     var count = 1
+    var isPause : Bool = false
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
@@ -36,13 +40,27 @@ class TimerInterfaceController: WKInterfaceController {
     
     func restartTimer() {
         if(!isBreak) {
+            count += 1
             sessionName.setText(session)
-            backgroundTimer = 15
+            backgroundTimer = 5
             myTimer.setDate(Date() + TimeInterval(backgroundTimer))
+            pauseLabel.setHidden(false)
+            doneButton.setHidden(false)
         } else {
-            sessionName.setText(breakName)
-            backgroundTimer = 3
-            myTimer.setDate(Date() + TimeInterval(backgroundTimer))
+            if count != 4{
+                sessionName.setText(breakName)
+                backgroundTimer = 3
+                myTimer.setDate(Date() + TimeInterval(backgroundTimer))
+        
+            }else {
+                sessionName.setText("Longer Break")
+                backgroundTimer = 10
+                myTimer.setDate(Date() + TimeInterval(backgroundTimer))
+                count = 0
+            }
+            pauseLabel.setHidden(true)
+            doneButton.setHidden(true)
+            
         }
         myTimer.start()
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerCountDown), userInfo: nil, repeats: true)
@@ -64,6 +82,7 @@ class TimerInterfaceController: WKInterfaceController {
             restartTimer()
         }
         
+        
     }
     @IBAction func doneSession() {
         popToRootController()
@@ -75,7 +94,18 @@ class TimerInterfaceController: WKInterfaceController {
         player.play()
     }
     @IBAction func pauseSession() {
-        
+        if !isPause {
+            timer.invalidate()
+            myTimer.stop()
+            isPause.toggle()
+            pauseLabel.setTitle("Resume")
+        }else {
+            myTimer.setDate(Date() + TimeInterval(backgroundTimer))
+            myTimer.start()
+            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerCountDown), userInfo: nil, repeats: true)
+            isPause.toggle()
+            pauseLabel.setTitle("Pause")
+        }
     }
     
 }

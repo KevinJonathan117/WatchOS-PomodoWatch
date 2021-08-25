@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="18022"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
     </dependencies>
     <scenes>
         <!--newSession-->
@@ -43,14 +44,17 @@
                                     <fontDescription key="font" style="UICTFontTextStyleTitle0"/>
                                     <calendarUnit key="units" minute="YES" second="YES"/>
                                 </timer>
-                                <group width="1" alignment="left" id="NbZ-qs-xcc">
+                                <group width="136" alignment="center" contentMode="center" radius="10" spacing="0.0" id="NbZ-qs-xcc">
                                     <items>
-                                        <button width="63" alignment="right" title="Done" id="skJ-kW-8P0">
+                                        <button width="66" alignment="right" title="Done" id="skJ-kW-8P0">
+                                            <color key="backgroundColor" name="AccentColor"/>
+                                            <fontDescription key="font" type="system" pointSize="13"/>
                                             <connections>
                                                 <action selector="doneSession" destination="HsP-2o-DJr" id="oWl-3l-Ybk"/>
                                             </connections>
                                         </button>
-                                        <button width="61" alignment="left" title="Pause" id="7t6-dh-dVI" userLabel="Pause">
+                                        <button width="66" alignment="left" title="Pause" id="7t6-dh-dVI" userLabel="Pause">
+                                            <fontDescription key="font" type="system" pointSize="13"/>
                                             <connections>
                                                 <action selector="pauseSession" destination="HsP-2o-DJr" id="sHJ-kh-vzJ"/>
                                             </connections>
@@ -61,7 +65,9 @@
                         </group>
                     </items>
                     <connections>
+                        <outlet property="doneButton" destination="skJ-kW-8P0" id="91I-jt-Kog"/>
                         <outlet property="myTimer" destination="sEI-3M-1tD" id="BgG-bT-b3O"/>
+                        <outlet property="pauseLabel" destination="7t6-dh-dVI" id="wUY-MM-SWi"/>
                         <outlet property="sessionName" destination="Pah-GW-UmD" id="2Ic-4A-0JP"/>
                     </connections>
                 </controller>
@@ -69,4 +75,9 @@
             <point key="canvasLocation" x="220" y="-20"/>
         </scene>
     </scenes>
+    <resources>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>
